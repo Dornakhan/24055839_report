@@ -63,11 +63,11 @@ def load_all_data():
         # 5. Filter 999 Age Sentinels
         df_reduced = df_reduced[df_reduced['patient_age_at_treatment'].astype(str) != '999']
         
-        # 7. # Drop the requested donor columns
+        # 6. # Drop the requested donor columns
         donor_cols = ['egg_donor_age_at_registration', 'sperm_donor_age_at_registration']
         df_reduced = df_reduced.drop(columns=donor_cols, errors='ignore')
         
-        # 5. SPECIFIC ROW DELETIONS (Targeting 999s and Blanks)
+        # 7. SPECIFIC ROW DELETIONS (Targeting 999s and Blanks)
         # Drop anything with 999 or '999' in patient_age and partner_age
         for col in ['patient_age_at_treatment', 'partner_age']:
             df_reduced = df_reduced[~df_reduced[col].isin([999, '999'])]
@@ -85,7 +85,7 @@ def load_all_data():
         ]
         df_reduced = df_reduced.dropna(subset=final_na_drop)
         
-        # 6. Final cleanup of blanks
+        # Final cleanup of blanks
         df_reduced = df_reduced.dropna(subset=['date_of_embryo_transfer', 'total_number_of_previous_pregnancies_ivf_and_di', 'live_birth_occurrence'])
         
         # Impute known Binary Indicators with 0 (Assuming NaN means 'Attribute Not Present')
