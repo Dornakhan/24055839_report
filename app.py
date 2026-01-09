@@ -812,7 +812,7 @@ def show_predictions(df_reduced):
             previous_cycles = st.number_input("Previous IVF Cycles", 0, 10, 0)
         
         with col2:
-            embryos = st.number_input("Embryos Transferred", 1, 5, 1)
+            embryos = st.number_input("Embryos Transferred", 0, 5, 1)
             eggs_collected = st.number_input("Fresh Eggs Collected", 0, 30, 10)
         
         with col3:
